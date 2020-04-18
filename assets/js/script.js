@@ -18,8 +18,9 @@ var displayCurrentWeather = function(data) {
     console.log("Weather!");
     var lon = data.coord.lon;
     var lat = data.coord.lat;
-    var name= data.name
-
+    var name = data.name
+    var date = moment.unix(data.dt).format("L")
+    console.log(date)
     searchCityUV(lon, lat, name);
 }
 
