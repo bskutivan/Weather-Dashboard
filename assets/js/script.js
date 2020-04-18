@@ -18,14 +18,14 @@ var displayCurrentWeather = function(data) {
     console.log("Weather!");
     var lon = data.coord.lon;
     var lat = data.coord.lat;
-    var name= data.name
+    var city = data.name
 
-    searchCityUV(lon, lat, name);
+    searchCityUV(lon, lat, city);
 }
 
-// var displayCurrentUV = function() {
-//     console.log("sunburns")
-// }
+var displayCurrentUV = function() {
+    console.log("sunburns")
+}
 
 var searchSubmitHandler = function(event) {
     event.preventDefault();
@@ -40,22 +40,22 @@ var searchSubmitHandler = function(event) {
     }
 }
 
-var searchCityUV = function(name, lon, lat) {
+var searchCityUV = function(lon, lat, city) {
     console.log(lon);
     console.log(lat);
-    console.log(name);
+    console.log(city);
 
-    // var apiUrl = "http://api.openweathermap.org/data/2.5/uvi?q=" + city + "&APPID=e51cf34ee1831280d9d0aec1b510446b&lat=" + lat + "&lon=" +lon;
+    var apiUrl = "http://api.openweathermap.org/data/2.5/uvi?q=" + city + "&APPID=e51cf34ee1831280d9d0aec1b510446b&lat=" + lat + "&lon=" +lon;
 
-    // fetch(apiUrl).then(function(response) {
-    //     if (response.ok) {
-    //         response.json().then(function(data) {
-    //             displayCurrentUV(data);
-    //         });
-    //     } else {
-    //         alert("Error: " + response.statusText);
-    //     }
-    // })
+    fetch(apiUrl).then(function(response) {
+        if (response.ok) {
+            response.json().then(function(data) {
+                displayCurrentUV(data);
+            });
+        } else {
+            alert("Error: " + response.statusText);
+        }
+    })
 }
 
 var searchCityCurrent = function(city) {
