@@ -207,7 +207,7 @@ var searchCityUV = function(lon, lat, city) {
 }
 
 var searchCityCurrent = function(city) {
-    var apiUrl = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&APPID=e51cf34ee1831280d9d0aec1b510446b"
+    var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&APPID=e51cf34ee1831280d9d0aec1b510446b"
     
     //clear out current information before displaying new information
 
@@ -223,7 +223,7 @@ var searchCityCurrent = function(city) {
 }
 
 var searchCityForecast = function(city) {
-    var apiUrl = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial&appid=e51cf34ee1831280d9d0aec1b510446b"
+    var apiUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial&appid=e51cf34ee1831280d9d0aec1b510446b"
 
     fetch(apiUrl).then(function(response) {
         if (response.ok) {
