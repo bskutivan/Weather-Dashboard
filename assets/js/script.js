@@ -130,6 +130,45 @@ var displayForecastWeather = function(data) {
     var day2Hum = data.list[10].main.humidity;
     day2HumEl.innerHTML= " " + day2Hum + "%";
 
+    // day 3 data
+    var day3Date = moment.unix(data.list[18].dt).format("L");
+    day3DateEl.innerHTML= " (" + day3Date + ")";
+
+    var day3Icon = data.list[18].weather[0].icon;
+    day3IconEl.setAttribute("src", "http://openweathermap.org/img/wn/" + day3Icon +"@2x.png");
+
+    var day3Temp = data.list[18].main.temp;
+    day3TempEl.innerHTML= " " + day3Temp + " ";
+
+    var day3Hum = data.list[18].main.humidity;
+    day3HumEl.innerHTML= " " + day3Hum + "%";
+
+    // day 4 data
+    var day4Date = moment.unix(data.list[26].dt).format("L");
+    day4DateEl.innerHTML= " (" + day4Date + ")";
+
+    var day4Icon = data.list[26].weather[0].icon;
+    day4IconEl.setAttribute("src", "http://openweathermap.org/img/wn/" + day4Icon +"@2x.png");
+
+    var day4Temp = data.list[26].main.temp;
+    day4TempEl.innerHTML= " " + day4Temp + " ";
+
+    var day4Hum = data.list[26].main.humidity;
+    day4HumEl.innerHTML= " " + day4Hum + "%";
+
+    // day 5 data
+    var day5Date = moment.unix(data.list[34].dt).format("L");
+    day5DateEl.innerHTML= " (" + day5Date + ")";
+
+    var day5Icon = data.list[34].weather[0].icon;
+    day5IconEl.setAttribute("src", "http://openweathermap.org/img/wn/" + day5Icon +"@2x.png");
+
+    var day5Temp = data.list[34].main.temp;
+    day5TempEl.innerHTML= " " + day5Temp + " ";
+
+    var day5Hum = data.list[34].main.humidity;
+    day5HumEl.innerHTML= " " + day5Hum + "%";
+
 
 }
 
