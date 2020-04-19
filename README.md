@@ -19,5 +19,5 @@ WHEN I click on a city in the search history
 THEN I am again presented with current and future conditions for that city
 
 # Screenshots
-![](https://github.com/bskutivan/Weather-Dashboard/blob/master/Develop/images/screenshot2.jpg)
-![](https://github.com/bskutivan/Weather-Dashboard/blob/master/Develop/images/Screenshot1.jpg) 
+![](https://github.com/bskutivan/Weather-Dashboard/blob/master/assets/images/Screenshot2.jpg)
+![](https://github.com/bskutivan/Weather-Dashboard/blob/master/assets/images/Screenshot1.jpg) 
