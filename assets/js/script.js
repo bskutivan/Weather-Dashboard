@@ -49,7 +49,8 @@ var forecastEl = document.getElementById("forecast");
     //variables defined to retain data points needed to pass into UV fetch request and populate current weather section
     var lon = data.coord.lon;
     var lat = data.coord.lat;
-
+    
+    //clear data conditional
     var clearData = cityNameEl.firstChild;
 
     if (clearData) {
