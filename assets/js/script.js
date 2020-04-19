@@ -4,9 +4,10 @@ var searchInputEl = document.getElementById("search");
 var cityNameEl = document.getElementById("cityNameText");
 var iconEl = document.getElementById("icon");
 var currentTempEl = document.getElementById("currentTemp");
-var currentHumidityEl = document.getElementById("currentHumidity")
-var currentWindSpeedEl = document.getElementById("currentWindSpeed")
-var currentUVEl = document.getElementById("currentUV")
+var currentHumidityEl = document.getElementById("currentHumidity");
+var currentWindSpeedEl = document.getElementById("currentWindSpeed");
+var currentUVEl = document.getElementById("currentUV");
+var cityHistoryEl = document.getElementById("cityHistory")
 
 //5 day focast variables
 var forecastEl = document.getElementById("forecast");
@@ -48,10 +49,19 @@ var forecastEl = document.getElementById("forecast");
     //variables defined to retain data points needed to pass into UV fetch request and populate current weather section
     var lon = data.coord.lon;
     var lat = data.coord.lat;
+
+    var clearData = cityNameEl.firstChild;
+
+    if (clearData) {
+        cityNameEl.removeChild("clearMe"); 
+    }
+
     //get city name
     var city = data.name;
-    var cityTitleEl = document.createElement("span")
+    var cityTitleEl = document.createElement("h3")
     cityTitleEl.innerHTML = city
+    cityTitleEl.classList = "d-inline"
+    cityTitleEl.setAttribute("id", "clearMe")
 
     //get temp
     var temp = data.main.temp;
@@ -71,12 +81,11 @@ var forecastEl = document.getElementById("forecast");
     iconEl.setAttribute("src","http://openweathermap.org/img/wn/" + iconCode +"@2x.png");
     //get date code
     var date = moment.unix(data.dt).format("L")
-    var dateEl = document.createElement("span")
+    var dateEl = document.createElement("h3")
     dateEl.innerHTML = " (" + date + ")"
+    dateEl.classList = "d-inline"
+    dateEl.setAttribute("id", "clearMe")
     
-    var cityTitleEl = document.createElement("span")
-    cityTitleEl.innerHTML = city
-   
     
     //appending elements to Current Weather section
     cityNameEl.appendChild(cityTitleEl);
@@ -172,19 +181,6 @@ var displayForecastWeather = function(data) {
 
 }
 
-var searchSubmitHandler = function(event) {
-    event.preventDefault();
-    
-    var city = searchInputEl.value.trim();
-    cityNameEl.innerHTML = ""
-    if(city) {
-        searchCityCurrent(city);
-        searchCityForecast(city);
-        searchInputEl.value = "";
-    } else {
-        alert("Please enter the name of the city you want the forecast for.");
-    }
-}
 
 var searchCityUV = function(lon, lat, city) {
     console.log(lon);
@@ -206,6 +202,8 @@ var searchCityUV = function(lon, lat, city) {
 
 var searchCityCurrent = function(city) {
     var apiUrl = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&APPID=e51cf34ee1831280d9d0aec1b510446b"
+    
+    //clear out current information before displaying new information
 
     fetch(apiUrl).then(function(response) {
         if (response.ok) {
@@ -215,7 +213,7 @@ var searchCityCurrent = function(city) {
         } else {
             alert("Error: " + response.statusText);
         }
-    })
+    })   
 }
 
 var searchCityForecast = function(city) {
@@ -232,4 +230,35 @@ var searchCityForecast = function(city) {
     })
 }
 
+var saveCity = function(city) {
+    var cityEl = document.createElement("li");
+    cityEl.innerText = city;
+    cityEl.classList = "list-group-item onHover"
+    cityHistoryEl.appendChild(cityEl);
+}
+
+var cityHistoryEventHandler = function(event) {
+    event.preventDefault();
+
+    var city = event.target.innerHTML;
+
+    searchCityCurrent(city);
+    searchCityForecast(city);
+}
+
+var searchSubmitHandler = function(event) {
+    event.preventDefault();
+
+    var city = searchInputEl.value.trim();
+    if(city) {
+        searchCityCurrent(city);
+        searchCityForecast(city);
+        saveCity(city);
+        searchInputEl.value = "";
+    } else {
+        alert("Please enter the name of the city you want the forecast for.");
+    }
+}
+
+cityHistoryEl.addEventListener("click", cityHistoryEventHandler)
 searchFormEl.addEventListener("submit", searchSubmitHandler)
