@@ -1,4 +1,4 @@
-    //current conditions variables and search form
+//current conditions variables and search form variables
 var searchFormEl = document.getElementById("searchForm");
 var searchInputEl = document.getElementById("search");
 var cityNameEl = document.getElementById("cityNameText");
@@ -8,8 +8,43 @@ var currentHumidityEl = document.getElementById("currentHumidity")
 var currentWindSpeedEl = document.getElementById("currentWindSpeed")
 var currentUVEl = document.getElementById("currentUV")
 
+//5 day focast variables
+var forecastEl = document.getElementById("forecast");
 
-var displayCurrentWeather = function(data) {
+    // day one
+    var day1DateEl = document.getElementById("day1Date");
+    var day1IconEl = document.getElementById("day1Icon");
+    var day1TempEl = document.getElementById("day1Temp");
+    var day1HumEl = document.getElementById("day1Hum");
+
+    // day two
+    var day2DateEl = document.getElementById("day2Date");
+    var day2IconEl = document.getElementById("day2Icon");
+    var day2TempEl = document.getElementById("day2Temp");
+    var day2HumEl = document.getElementById("day2Hum");
+
+    //day three
+    var day3DateEl = document.getElementById("day3Date");
+    var day3IconEl = document.getElementById("day3Icon");
+    var day3TempEl = document.getElementById("day3Temp");
+    var day3HumEl = document.getElementById("day3Hum");
+
+    //day four
+    var day4DateEl = document.getElementById("day4Date");
+    var day4IconEl = document.getElementById("day4Icon");
+    var day4TempEl = document.getElementById("day4Temp");
+    var day4HumEl = document.getElementById("day4Hum");
+
+    //day five
+    var day5DateEl = document.getElementById("day5Date");
+    var day5IconEl = document.getElementById("day5Icon");
+    var day5TempEl = document.getElementById("day5Temp");
+    var day5HumEl = document.getElementById("day5Hum");
+// end of forecase variable
+
+// start of functions
+
+    var displayCurrentWeather = function(data) {
     //variables defined to retain data points needed to pass into UV fetch request and populate current weather section
     var lon = data.coord.lon;
     var lat = data.coord.lat;
@@ -52,7 +87,6 @@ var displayCurrentWeather = function(data) {
 
 var displayCurrentUV = function(data) {
     var uv = data.value;
-    console.log(uv)
     if (uv >= 6) {
         currentUVEl.classList="bg-danger m-3 p-2 border rounded text-center";
         currentUVEl.innerHTML=" " + uv + " ";
@@ -65,6 +99,40 @@ var displayCurrentUV = function(data) {
     }
 }
 
+var displayForecastWeather = function(data) {
+    //remove hide from forecast div
+    forecastEl.classList= "p-3"
+    
+    // day 1 data
+    var day1Date = moment.unix(data.list[2].dt).format("L");
+    day1DateEl.innerHTML= " (" + day1Date + ")";
+
+    var day1Icon = data.list[2].weather[0].icon;
+    day1IconEl.setAttribute("src", "http://openweathermap.org/img/wn/" + day1Icon +"@2x.png");
+
+    var day1Temp = data.list[2].main.temp;
+    day1TempEl.innerHTML= " " + day1Temp + " ";
+
+    var day1Hum = data.list[2].main.humidity;
+    day1HumEl.innerHTML= " " + day1Hum + "%";
+  
+
+    // day 2 data
+    var day2Date = moment.unix(data.list[10].dt).format("L");
+    day2DateEl.innerHTML= " (" + day2Date + ")";
+
+    var day2Icon = data.list[10].weather[0].icon;
+    day2IconEl.setAttribute("src", "http://openweathermap.org/img/wn/" + day2Icon +"@2x.png");
+
+    var day2Temp = data.list[10].main.temp;
+    day2TempEl.innerHTML= " " + day2Temp + " ";
+
+    var day2Hum = data.list[10].main.humidity;
+    day2HumEl.innerHTML= " " + day2Hum + "%";
+
+
+}
+
 var searchSubmitHandler = function(event) {
     event.preventDefault();
     
@@ -72,9 +140,10 @@ var searchSubmitHandler = function(event) {
     cityNameEl.innerHTML = ""
     if(city) {
         searchCityCurrent(city);
+        searchCityForecast(city);
         searchInputEl.value = "";
     } else {
-        alert("Please enture the name of the city you want the forecast for.");
+        alert("Please enter the name of the city you want the forecast for.");
     }
 }
 
@@ -107,8 +176,21 @@ var searchCityCurrent = function(city) {
         } else {
             alert("Error: " + response.statusText);
         }
-})
+    })
+}
 
+var searchCityForecast = function(city) {
+    var apiUrl = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial&appid=e51cf34ee1831280d9d0aec1b510446b"
+
+    fetch(apiUrl).then(function(response) {
+        if (response.ok) {
+            response.json().then(function(data) {
+                displayForecastWeather(data, city);
+            });
+        } else {
+            alert("Error: " + response.statusText);
+        }
+    })
 }
 
 searchFormEl.addEventListener("submit", searchSubmitHandler)

@@ -33,55 +33,45 @@
                     <div class="p-5 m-3 border border-secondary rounded">
                         <div id="cityNameTextContainer">
                             <h3 class= "pb-2 d-inline" id="cityNameText"></h3>
-                            <img id="icon" class="d-inline">
+                            <img id="icon" class="d-inline"/>
                         </div>
                         <p>Temp:<span id="currentTemp"></span></p>
                         <p>Humidity:<span id="currentHumidity"></span></p>
                         <p>Wind Speed:<span id="currentWindSpeed"></span></p>
                         <div>UV index:<span id="currentUV"></span></div>
                     </div>
-                    <div class="p-3 hideMe">
+                    <div id="forecast" class="p-3 hideMe">
                         <h2>5-Day Forecast:</h2>
                         <div class="row">
-                            <div class="card col-md-4 col-sm-12 col-xs-12 m-4 " style="width: 18rem;">
-                                <h5 class="card-title">Test Date</h5>
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">Cute Icon Here</li>
-                                    <li class="list-group-item">Temp: Something</li>
-                                    <li class="list-group-item">Humidity: 100%</li>
-                                </ul>
+                            <div class="card col-md-4 col-sm-12 col-xs-12 m-4 bg-primary text-white" style="width: 18rem;">
+                                <h5 class="card-title pt-2 bg-primary"><span id="day1Date"></span></h5>
+                                <p class=><img id="day1Icon"/></p>
+                                <p class=>Temp:<span id="day1Temp"></span></p>
+                                <p class=>Humidity:<span id="day1Hum"></span></p>
                             </div>
-                            <div class="card col-md-4 col-sm-12 col-xs-12 m-4 " style="width: 18rem;">
-                                <h5 class="card-title">Test Date</h5>
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">Cute Icon Here</li>
-                                    <li class="list-group-item">Temp: Something</li>
-                                    <li class="list-group-item">Humidity: 100%</li>
-                                </ul>
+                            <div class="card col-md-4 col-sm-12 col-xs-12 m-4 bg-primary text-white" style="width: 18rem;">
+                                <h5 class="card-title pt-2 bg-primary"><span id="day2Date"></span></h5>
+                                <p class=><img id="day2Icon"/></p>
+                                <p class=>Temp:<span id="day2Temp"></span></p>
+                                <p class=>Humidity:<span id="day2Hum"></span></p>
                             </div>
-                            <div class="card col-md-4 col-sm-12 col-xs-12 m-4 " style="width: 18rem;">
-                                <h5 class="card-title">Test Date</h5>
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">Cute Icon Here</li>
-                                    <li class="list-group-item">Temp: Something</li>
-                                    <li class="list-group-item">Humidity: 100%</li>
-                                </ul>
+                            <div class="card col-md-4 col-sm-12 col-xs-12 m-4 bg-primary text-white" style="width: 18rem;">
+                                <h5 class="card-title pt-2 bg-primary"><span id="day3Date"></span></h5>
+                                <p class=><img id="day3Icon"/></p>
+                                <p class=>Temp:<span id="day3Temp"></span></p>
+                                <p class=>Humidity:<span id="day3Hum"></span></p>
                             </div>
-                            <div class="card col-md-4 col-sm-12 col-xs-12 m-4 " style="width: 18rem;">
-                                <h5 class="card-title">Test Date</h5>
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">Cute Icon Here</li>
-                                    <li class="list-group-item">Temp: Something</li>
-                                    <li class="list-group-item">Humidity: 100%</li>    
-                                </ul>
+                            <div class="card col-md-4 col-sm-12 col-xs-12 m-4 bg-primary text-white" style="width: 18rem;">
+                                <h5 class="card-title pt-2 bg-primary"><span id="day4Date"></span></h5>
+                                <p class=><img id="day4Icon"/></p>
+                                <p class=>Temp:<span id="day4Temp"></span></p>
+                                <p class=>Humidity:<span id="day4Hum"></span></p>
                             </div>
-                            <div class="card col-md-4 col-sm-12 col-xs-12 m-4 " style="width: 18rem;">
-                                <h5 class="card-title">Test Date</h5>
-                                <ul class="list-group list-group-flush">
-                                <li class="list-group-item">Cute Icon Here</li>
-                                <li class="list-group-item">Temp: Something</li>
-                                <li class="list-group-item">Humidity: 100%</li>
-                                </ul>
+                            <div class="card col-md-4 col-sm-12 col-xs-12 m-4 bg-primary text-white" style="width: 18rem;">
+                                <h5 class="card-title pt-2 bg-primary"><span id="day5Date"></span></h5>
+                                <p class=><img id="day5Icon"/></p>
+                                <p class=>Temp:<span id="day5Temp"></span></p>
+                                <p class=>Humidity:<span id="day5Hum"></span></p>
                             </div>
                         </div>
                     </div>
