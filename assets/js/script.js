@@ -9,6 +9,8 @@ var currentWindSpeedEl = document.getElementById("currentWindSpeed");
 var currentUVEl = document.getElementById("currentUV");
 var cityHistoryEl = document.getElementById("cityHistory")
 
+var savedCities = [];
+
 //5 day focast variables
 var forecastEl = document.getElementById("forecast");
 
@@ -51,11 +53,7 @@ var forecastEl = document.getElementById("forecast");
     var lat = data.coord.lat;
     
     //clear data conditional
-    var clearData = cityNameEl.firstChild;
-
-    if (clearData) {
-        cityNameEl.removeChild("clearMe"); 
-    }
+    //var clearData = cityNameEl.firstChild;
 
     //get city name
     var city = data.name;
@@ -236,12 +234,35 @@ var saveCity = function(city) {
     cityEl.innerText = city;
     cityEl.classList = "list-group-item onHover"
     cityHistoryEl.appendChild(cityEl);
+
+    savedCities.push(city);
+
+    localStorage.setItem("city", JSON.stringify(savedCities));
+    console.log(savedCities);
+}
+
+var loadSavedCities = function() {
+    var savedCityUnParsed = localStorage.getItem("city");
+    
+    if (!savedCityUnParsed) {
+        return false;
+    };
+    
+    savedCity = JSON.parse(savedCityUnParsed);
+
+    for (i = 0; i < savedCity.length; i++ ) {
+        var cityEl = document.createElement("li")
+        cityEl.innerText = savedCity[i];
+        cityEl.classList = "list-group-item onHover"
+        cityHistoryEl.appendChild(cityEl);
+    };
 }
 
 var cityHistoryEventHandler = function(event) {
     event.preventDefault();
 
     var city = event.target.innerHTML;
+    localStorage.getItem(city);
 
     searchCityCurrent(city);
     searchCityForecast(city);
@@ -260,6 +281,8 @@ var searchSubmitHandler = function(event) {
         alert("Please enter the name of the city you want the forecast for.");
     }
 }
+
+loadSavedCities();
 
 cityHistoryEl.addEventListener("click", cityHistoryEventHandler)
 searchFormEl.addEventListener("submit", searchSubmitHandler)
