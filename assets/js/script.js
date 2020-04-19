@@ -255,11 +255,11 @@ var loadSavedCities = function() {
         return false;
     };
     
-    savedCity = JSON.parse(savedCityUnParsed);
+    savedCities = JSON.parse(savedCityUnParsed);
 
-    for (i = 0; i < savedCity.length; i++ ) {
+    for (i = 0; i < savedCities.length; i++ ) {
         var cityEl = document.createElement("li")
-        cityEl.innerText = savedCity[i];
+        cityEl.innerText = savedCities[i];
         cityEl.classList = "list-group-item onHover"
         cityHistoryEl.appendChild(cityEl);
     };
