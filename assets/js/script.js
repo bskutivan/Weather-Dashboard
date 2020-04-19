@@ -53,7 +53,14 @@ var forecastEl = document.getElementById("forecast");
     var lat = data.coord.lat;
     
     //clear data conditional
-    //var clearData = cityNameEl.firstChild;
+    var clearData = cityNameEl.firstChild;
+
+    if (clearData) {
+        var clearMe = document.getElementById("clearMe");
+        var clearMeAlso = document.getElementById("clearMeAlso");
+        clearMe.remove();
+        clearMeAlso.remove();
+    }
 
     //get city name
     var city = data.name;
@@ -83,7 +90,7 @@ var forecastEl = document.getElementById("forecast");
     var dateEl = document.createElement("h3")
     dateEl.innerHTML = " (" + date + ")"
     dateEl.classList = "d-inline"
-    dateEl.setAttribute("id", "clearMe")
+    dateEl.setAttribute("id", "clearMeAlso")
     
     
     //appending elements to Current Weather section
