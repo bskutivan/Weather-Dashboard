@@ -193,7 +193,7 @@ var searchCityUV = function(lon, lat, city) {
     console.log(lat);
     console.log(city);
 
-    var apiUrl = "http://api.openweathermap.org/data/2.5/uvi?q=" + city + "&APPID=e51cf34ee1831280d9d0aec1b510446b&lat=" + lat + "&lon=" +lon;
+    var apiUrl = "https://api.openweathermap.org/data/2.5/uvi?q=" + city + "&APPID=e51cf34ee1831280d9d0aec1b510446b&lat=" + lat + "&lon=" +lon;
 
     fetch(apiUrl).then(function(response) {
         if (response.ok) {
