@@ -4,6 +4,10 @@
 
 to practice use of server-side APIs by creating a responsive weather app that uses local storage for persistant history of the cities a user has looked up, a 5-day forcast, and dynamic UV index.
 
+# Usage
+
+to use this project please feel free to see the deployed app with link below and in description. To use code for your own projects please feel free to clone to repo to a local directory and find all necessary script in the script.js file in the assets directory.
+
 # Criteria
 
 GIVEN a weather dashboard with form inputs</br>
