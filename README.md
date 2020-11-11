@@ -1,5 +1,5 @@
 # Weather-Dashboard
-
+![Github licence](http://img.shields.io/badge/license-MIT-blue.svg)
 # Project Goal
 
 to practice use of server-side APIs by creating a responsive weather app that uses local storage for persistant history of the cities a user has looked up, a 5-day forcast, and dynamic UV index.
